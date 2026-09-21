@@ -5,7 +5,7 @@
   Light weight multi account steam idler
 </p>
 <p align="center">
-<a href="https://github.com/DoctorMcKay/node-steam-user">
+<a href="Youtube.com">
   <img src="https://img.shields.io/badge/Steam-user-blue.svg" alt="Steam user badge"/>
 </a>
 <a href="https://github.com/pawnderspalace/SteamIdler">
