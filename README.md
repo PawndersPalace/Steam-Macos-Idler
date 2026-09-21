@@ -22,7 +22,7 @@
 
 ## The project
 
-This project has been created in _2019_ for easily running a **steam idler 24/7** in the background while using **almost no resources**. The project was reworked in _2022_ adding new options like the "**staticIdler**" and "**dynamicIdler**" idlers. Multi account support was added in the rewrite from _2023_, now known as SteamIdler V2.
+This project has been created in _2025_ for easily running a **steam idler 24/7** in the background while using **almost no resources**. The project was reworked in _2026_ adding new options like the "**staticIdler**" and "**dynamicIdler**" idlers. Multi account support was added in the rewrite from _2026_, now known as SteamIdler V2.
 
 ## Requirements
 

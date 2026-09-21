@@ -1,0 +1,37 @@
+{
+  "name": "steam-idler",
+  "version": "2.1.0",
+  "description": "This is a small steam idle bot made with steam-user.",
+  "homepage": "https://github.com/PawndersPalace/SteamIdler",
+  "contributors": [
+    {
+      "name": "PawndersPalace",
+      "url": "https://github.com/PawndersPalace"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PawndersPalace/SteamIdler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PawndersPalace/SteamIdler/issues"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "text": "node ./src/index.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "PawndersPalace",
+  "license": "MIT",
+  "dependencies": {
+    "asciiart-logo": "^0.2.7",
+    "colors": "^1.4.0",
+    "console-table-printer": "^2.12.1",
+    "steam-totp": "^2.1.2",
+    "steam-user": "^5.2.0",
+    "time-stamp": "^2.2.0"
+  }
+}
