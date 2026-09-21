@@ -95,7 +95,7 @@ Alternatively, you can download git directly from [git-scm.com](https://git-scm.
 The easiest way to install Node.js on macOS is via Homebrew:
 
 ```
-brew install node@18
+brew install node
 ```
 
 Or you can download the macOS installer from [nodejs.org](https://nodejs.org/en) and run it.
