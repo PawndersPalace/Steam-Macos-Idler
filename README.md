@@ -24,16 +24,18 @@
 
 This project has been created in _2025_ for easily running a **steam idler 24/7** in the background while using **almost no resources**. The project was reworked in _2026_ adding new options like the "**staticIdler**" and "**dynamicIdler**" idlers. Multi account support was added in the rewrite from _2026_, now known as SteamIdler V2.
 
+> **ℹ️ Platform Status:** Currently tested and optimized for **macOS**. Windows and Linux support coming soon.
+
 ## Requirements
 
-- `git` command line ([Windows](https://git-scm.com/download/win)|[Linux](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)|[MacOS](https://git-scm.com/download/mac)) installed
+- `git` command line ([macOS](https://git-scm.com/download/mac)) installed
 - `node` version 14.0.0 or higher ([get here](https://nodejs.org))
 
 > If you have 2FA enabled on your Steam account, you'll need to provide it when the program starts. A message will appear prompting you for it.
 
 ## Download code
 
-Run the following command in a CMD/terminal at the location where you want to download it:
+Run the following command in a terminal at the location where you want to download it:
 
 ```
 git clone https://github.com/pawnderspalace/SteamIdler.git
@@ -58,52 +60,54 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 # Table of contents
 
-1. **[Prepare linux](#prepare-linux)**  
-   1.1 [Update server](#update-server)
+1. **[Prepare macOS](#prepare-macOS)**  
+   1.1 [Install git](#install-git)  
    1.2 [Install node.js](#install-nodejs)
-2. **[Prepare windows](#prepare-windows)**  
-   2.1 [Get node.js](#get-nodejs)
-3. **[Account config](#account-config)**  
-   3.1 [Information](#information)
-   3.2 [Add config](#add-config)
-4. **[Run idler](#run-idler)**  
-   4.1 [Install dependencies](#install-dependencies)
-   4.2 [Start program](#start-program)
+2. **[Account config](#account-config)**  
+   2.1 [Information](#information)  
+   2.2 [Add config](#add-config)
+3. **[Run idler](#run-idler)**  
+   3.1 [Install dependencies](#install-dependencies)  
+   3.2 [Start program](#start-program)
 
 ---
 
-# Prepare linux
+# Prepare macOS
 
-> Everything in this section is based on a host system running **Ubuntu 18.04/20.04/22.04**. Most if not all information can be used for other versions of Ubuntu (or Debian-based distros) as well, but it may require slight changes.
+## Install git
 
-## Update server
+If you don't already have git installed, you can install it via Homebrew:
 
 ```
-sudo apt update && sudo apt upgrade -y
+brew install git
 ```
+
+If you don't have Homebrew installed, you can install it first by running:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Alternatively, you can download git directly from [git-scm.com](https://git-scm.com/download/mac).
 
 ## Install node.js
 
-```
-curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
+The easiest way to install Node.js on macOS is via Homebrew:
 
-sudo npm i npm@9.6.1 -g
+```
+brew install node@18
+```
+
+Or you can download the macOS installer from [nodejs.org](https://nodejs.org/en) and run it.
+
+After installation, verify it was successful by checking the versions:
+
+```
+node --version
+npm --version
 ```
 
 > The versions mentioned above can be outdated. Always check [(this page)](https://nodejs.org/en/) for the most recent LTS version of Node.js and check [(this page)](https://github.com/npm/cli/tags) for the most recent version of NPM. Installing outdated versions can create problems or security risks.
-
----
-
-# Prepare windows
-
-> Everything in this section is based on a host system running **Windows 10/11**. Most if not all information can be used for other versions of Windows as well, but it may require slight changes.
-
-## Get node.js
-
-Installing **Node.js** on Windows is straightforward—they provide an installer on their website. Simply download and run it by clicking "next" and "ok".
-
-**Download link:** https://nodejs.org/en
 
 ---
 
@@ -158,7 +162,7 @@ module.exports = {
 
 ## Install dependencies
 
-The program requires dependencies to work (see [dependencies](#dependencies)). Install them with the command below. Make sure you run this in the `SteamIdler` folder in a CMD/terminal.
+The program requires dependencies to work (see [dependencies](#dependencies)). Install them with the command below. Make sure you run this in the `SteamIdler` folder in a terminal.
 
 ```
 npm i
@@ -166,10 +170,14 @@ npm i
 
 ## Start program
 
-Starting/running the program is the same for Linux and Windows. Use the default Node.js start command below. Make sure you run this in the `SteamIdler` folder in a CMD/terminal.
+Use the default Node.js start command below. Make sure you run this in the `SteamIdler` folder in a terminal.
 
 ```
 node .
 ```
 
 ---
+
+## 🔜 Coming Soon
+
+Windows and Linux support is currently in testing. Check back soon for full documentation and support for these platforms.
