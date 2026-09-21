@@ -178,13 +178,13 @@ node .
 
 ### Running in the background
 
-To run the idler continuously even after closing your terminal or screen, use `nohup` on macOS/Linux. This will detach the process from your terminal.
+To run the idler continuously even after closing your screen, use `nohup` on macOS/Linux. This will detach the process from your terminal.
 
 ```
 nohup node . &
 ```
 
-You can then safely close your terminal, and the idler will continue to run in the background.
+You can then safely close your screen, and the idler will continue to run in the background.
 
 ---
 
