@@ -34,7 +34,15 @@ module.exports = new Promise((resolve, reject) => {
     });
 
     worker.on('disconnect', () => {
-      logger.error(`Worker ${worker.id} for ${config.account.username} has died, stopped idling`);
+      logger.error(`Worker ${worker.id} for ${config.account.username} has died, restarting worker...`);
+      workers.delete(worker.id);
+      
+      const newWorker = cluster.fork();
+      newWorker.once('online', async () => {
+        logger.info(`Replacement worker ${newWorker.id} for ${config.account.username} has been started`);
+        workers.set(newWorker.id, new Worker(newWorker.id, config, cluster));
+        newWorker.send({ name: 'login', config });
+      });
     });
   }
 

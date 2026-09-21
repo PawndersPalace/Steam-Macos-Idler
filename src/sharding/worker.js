@@ -124,24 +124,42 @@ module.exports = () => {
 
   client.on('disconnected', (result, msg) => {
     if (idler) idler.stop(account);
+    clearInterval(statsPusher);
+    account.update({ status: 'Disconnected, reconnecting...' });
+    logger.error(`${account.name} has disconnected (${msg}), attempting to reconnect in 10 seconds...`);
+
     setTimeout(() => {
-      clearInterval(statsPusher);
-    }, 11000);
-    account.update({ status: 'Disconnected' });
-    logger.error(`${account.name} has disconnected, with reason: ${msg}`);
+      try {
+        const refreshToken = readFileSync(`${configPath}/${config.account.username}.txt`)
+          .toString('utf8')
+          .trim();
+        client.logOn({ refreshToken, machineName: 'SteamServer' });
+      } catch (err) {
+        logger.error(`Failed to reload refresh token for reconnection: ${err.message}`);
+      }
+    }, 10000);
   });
 
   client.on('error', (err) => {
     if (idler) idler.stop(account);
-    setTimeout(() => {
-      clearInterval(statsPusher);
-    }, 11000);
+    clearInterval(statsPusher);
     if (err.message.includes('LoggedInElsewhere')) {
       account.update({ status: 'Session taken' });
       return logger.error(`Session from ${account.name} got taken from another location`);
     }
 
-    account.update({ status: 'Steam error' });
-    logger.error(`Steam error for ${account.name}: ${err.message}`);
+    account.update({ status: 'Steam error, reconnecting...' });
+    logger.error(`Steam error for ${account.name}: ${err.message}, attempting to reconnect in 10 seconds...`);
+
+    setTimeout(() => {
+      try {
+        const refreshToken = readFileSync(`${configPath}/${config.account.username}.txt`)
+          .toString('utf8')
+          .trim();
+        client.logOn({ refreshToken, machineName: 'SteamServer' });
+      } catch (reconnectErr) {
+        logger.error(`Failed to reload refresh token for reconnection: ${reconnectErr.message}`);
+      }
+    }, 10000);
   });
 };
