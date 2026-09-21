@@ -42,8 +42,14 @@ module.exports = (stats) => {
               ? `<t:${Math.floor(a.stoppedIdleTime / 1000)}:R>`
               : `<t:${Math.floor(a.idleStartTime / 1000)}:R>`,
           inline: true
-        },
-        { name: 'Idle mode', value: a.idleMode, inline: true },
+        },        {
+          name: a.idleStatus === 'Idle stopped' ? 'Idle duration' : '',
+          value:
+            a.idleStatus === 'Idle stopped'
+              ? `${Math.floor((a.stoppedIdleTime - a.idleStartTime) / 3600000)}h ${Math.floor(((a.stoppedIdleTime - a.idleStartTime) % 3600000) / 60000)}m`
+              : '',
+          inline: true
+        },        { name: 'Idle mode', value: a.idleMode, inline: true },
         { name: 'Idle rounds', value: a.idleRounds, inline: true }
       ],
       footer: {

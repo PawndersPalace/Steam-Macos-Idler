@@ -3,15 +3,26 @@ const { startTimeToHours } = require('../utils/additional');
 
 module.exports = (stats) => {
   const t1 = new Table({
-    title: 'List Of Running Steam Accounts | SteamIdler By PawndersPalace',
+    title: '🎮 SteamIdler - Active Accounts 🎮',
     columns: [
-      { name: 'name', title: 'Username', alignment: 'left' },
-      { name: 'list', title: 'Games list', alignment: 'right' },
-      { name: 'time', title: 'Time idled', alignment: 'right' },
-      { name: 'games', title: 'Games idled', alignment: 'right' },
-      { name: 'rounds', title: 'Idle rounds', alignment: 'right' },
-      { name: 'status', title: 'Status', alignment: 'left' }
-    ]
+      { name: 'name', title: '👤 Username', alignment: 'left', width: 20 },
+      { name: 'list', title: '🎲 Games', alignment: 'right', width: 18 },
+      { name: 'time', title: '⏱️ Time', alignment: 'right', width: 14 },
+      { name: 'games', title: '🏆 Games Idled', alignment: 'right', width: 14 },
+      { name: 'rounds', title: '🔄 Rounds', alignment: 'right', width: 12 },
+      { name: 'status', title: '📊 Status', alignment: 'left', width: 14 }
+    ],
+    titleAlignment: 'center',
+    alignTitle: true,
+    border: {
+      top: '─',
+      bottom: '─',
+      left: '│',
+      right: '│',
+      middle: '─'
+    },
+    stringLength: (str) => str.length,
+    output: 'console'
   });
 
   stats.forEach((a) => {
