@@ -38,7 +38,7 @@ This project has been created in _2025_ for easily running a **steam idler 24/7*
 Run the following command in a terminal at the location where you want to download it:
 
 ```
-git clone https://github.com/pawnderspalace/SteamIdler.git
+git clone https://github.com/pawnderspalace/Steam-Macos-idler.git
 ```
 
 > Remember to go into the config folder and create/add a config file (for example: **`src/config/account1.js`**). The name of the config file doesn't matter, but every account should have its own config file.
