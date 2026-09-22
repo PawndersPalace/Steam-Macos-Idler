@@ -18,5 +18,6 @@ module.exports = {
   /*
   These settings are not account specific, but for the program itself
   */
-  discordWebhook: '' // Discord webhook to send stats to
+  discordWebhook: '', // Discord webhook to send stats to
+  discordOwnerID: '' // Discord user or role ID to mention on bot stop, example: '123456789012345678' or '<@&123456789012345678>'
 };

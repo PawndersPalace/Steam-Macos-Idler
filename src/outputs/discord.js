@@ -1,9 +1,15 @@
+const { startTimeToHours } = require('../utils/additional');
+
 let discordWebhook;
+let discordOwnerID;
 let discordMessageID = null;
 try {
-  discordWebhook = require('../config/global').discordWebhook;
+  const globalConfig = require('../config/global');
+  discordWebhook = globalConfig.discordWebhook;
+  discordOwnerID = globalConfig.discordOwnerID;
 } catch (e) {
   discordWebhook = null;
+  discordOwnerID = null;
 }
 const discordColors = {
   online: parseInt('2ecc71', 16),
@@ -11,12 +17,12 @@ const discordColors = {
   error: parseInt('e74c3c', 16)
 };
 
-module.exports = (stats) => {
+const sendStats = (stats) => {
   // If none specified, return
   if (!discordWebhook) return;
 
   // Create our embeds
-  output = {
+  const output = {
     username: 'Steam Idler',
     embeds: []
   };
@@ -33,6 +39,8 @@ module.exports = (stats) => {
         { name: 'Status', value: a.idleStatus, inline: true },
         { name: 'Games list', value: a.gamesCount, inline: true },
         { name: 'Games idled', value: a.gamesIdled, inline: true },
+        { name: a.idleStatus !== 'Idling!' ? 'Idle stopped' : 'Idle started', value: a.idleStartTime === NaN ? 'Unknown' : a.idleStatus !== 'Idling!' ? `<t:${Math.floor(a.stoppedIdleTime / 1000)}:R>` : `<t:${Math.floor(a.idleStartTime / 1000)}:R>`, inline: true },
+        { name: 'Idle mode', value: a.idleMode, inline: true },
         {
           name: a.idleStatus !== 'Idling!' ? 'Idle stopped' : 'Idle started',
           value:
@@ -77,4 +85,39 @@ module.exports = (stats) => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+const sendBotStopped = (uptime) => {
+  if (!discordWebhook) return;
+
+  const output = {
+    username: 'Steam Idler',
+    embeds: [
+      {
+        color: discordColors.error,
+        title: 'Bot Stopped!',
+        description: `The bot has stopped after running for ${uptime} hours.`,
+        timestamp: new Date().toISOString()
+      }
+    ]
+  };
+
+  if (discordOwnerID) {
+    output.content = `Attention ${discordOwnerID}!`;
+  }
+
+  fetch(discordWebhook + '?wait=true', {
+    method: 'POST',
+    body: JSON.stringify(output),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  }).catch((error) => {
+    console.log(error);
+  });
+};
+
+module.exports = {
+  sendStats,
+  sendBotStopped
 };
